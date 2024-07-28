@@ -1,0 +1,27 @@
+section .data
+    num db 5        
+    result dq 1    
+
+section .bss
+
+section .text
+    global _start
+
+_start:
+
+    mov al, [num]   
+    mov cl, al       
+    mov rax, 1    
+
+calculate_factorial:
+    mul cl         
+    mov cl, al      
+    dec al           
+    test al, al      
+    jnz calculate_factorial 
+
+    mov [result], rax
+
+    mov rax, 60      
+    xor rdi, rdi    
+    syscall
